@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+								 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+								 http://www.springframework.org/schema/security
+								 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<s:http auto-config="true">
+		<s:intercept-url pattern="/salle/" access="ROLE_ADMIN, ROLE_USER, ROLE_PROPRIETAIRE"/>
+		<s:intercept-url pattern="/salle/**" access="ROLE_ADMIN, ROLE_PROPRIETAIRE"/>
+		<s:intercept-url pattern="/client/" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/home/" access="ROLE_ADMIN, ROLE_USER, ROLE_PROPRIETAIRE"/>
+		<s:intercept-url pattern="/home/**" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/loginclient/" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/client/**" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/commandeclient/" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/commandeclient/" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/commandeclient/**" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/reservation/" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/reservation/**" access="ROLE_ADMIN, ROLE_USER"/>
+		<s:intercept-url pattern="/utilisateur/" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/utilisateur/**" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/categorie/" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/categorie/**" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/ville/" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/ville/**" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/listeReservation/**" access="ROLE_ADMIN, ROLE_PROPRIETAIRE"/>
+		
+		<s:form-login login-page="/" default-target-url="/home/" authentication-failure-url="/failedlogin"/>
+		
+		<s:access-denied-handler error-page="/errors/"/>
+		
+		<s:logout logout-success-url="/" delete-cookies="JSESSIONID"/>
+	</s:http>
+	
+	<s:authentication-manager>
+		<s:authentication-provider>
+<!-- 			<s:password-encoder hash="md5" /> -->
+			<s:jdbc-user-service data-source-ref="dataSource" 
+				users-by-username-query="select email, password,1 as actived from client where email=?" 
+				authorities-by-username-query="select u.email, r.roleName from client u, Roles r where u.idClient = r.idClient 
+				and u.email=?" />
+		</s:authentication-provider>
+	</s:authentication-manager>
+</beans:beans>

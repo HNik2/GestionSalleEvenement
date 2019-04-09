@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="constructor">
+		
+		
+	
+	<bean id="salleDao" class="com.appgestion.web.dao.imp.SalleDaoImp" />
+	<bean id="salleService" class="com.appgestion.web.services.imp.SalleServiceImp">
+		<property name="dao" ref="salleDao"></property>
+	</bean>
+	
+	<bean id="clientDao" class="com.appgestion.web.dao.imp.ClientDaoImp" />
+	<bean id="clientService" class="com.appgestion.web.services.imp.ClientServiceImp">
+		<property name="dao" ref="clientDao"></property>
+	</bean>
+	
+	<bean id="villeDao" class="com.appgestion.web.dao.imp.VilleDaoImp" />
+	<bean id="villeService" class="com.appgestion.web.services.imp.VilleServiceImp">
+		<property name="dao" ref="villeDao"></property>
+	</bean>
+	
+	<bean id="catDao" class="com.appgestion.web.dao.imp.CategorieDaoImp" />
+	<bean id="catService" class="com.appgestion.web.services.imp.CategorieServiceImp">
+		<property name="dao" ref="catDao"></property>
+	</bean>
+	
+	<bean id="reserveDao" class="com.appgestion.web.dao.imp.ReservationDaoImp" />
+	<bean id="reserveService" class="com.appgestion.web.services.imp.ReservationServiceImp">
+		<property name="dao" ref="reserveDao"></property>
+	</bean>
+	
+	<bean id="pubDao" class="com.appgestion.web.dao.imp.PublicationDaoImp" />
+	<bean id="pubService" class="com.appgestion.web.services.imp.PublicationServiceImp">
+		<property name="dao" ref="pubDao"></property>
+	</bean>
+	
+	<bean id="typeCDao" class="com.appgestion.web.dao.imp.TypeClientDaoImp" />
+	<bean id="typeCService" class="com.appgestion.web.services.imp.TypeClientImp">
+		<property name="dao" ref="typeCDao"></property>
+	</bean>
+	
+	 <bean id="RecherchDao" class="com.appgestion.web.dao.imp.RechercheDaoImp" />
+	<bean id="RecherchService" class="com.appgestion.web.services.imp.RechercheServiceImp">
+		<property name="dao" ref="RecherchDao"></property>
+	</bean>
+	 
+	<bean id="adminDao" class="com.appgestion.web.dao.imp.AdminDaoImp" />
+	<bean id="adminService" class="com.appgestion.web.services.imp.AdminServiceImp">
+		<property name="dao" ref="adminDao"></property>
+	</bean>
+	
+	<bean id="venteDao" class="com.appgestion.web.dao.imp.VenteDaoImp" />
+	<bean id="venteService" class="com.appgestion.web.services.imp.VenteServiceImp">
+		<property name="dao" ref="venteDao"></property>
+	</bean>
+	<bean id="ligneventeDao" class="com.appgestion.web.dao.imp.LigneVenteDaoImp" />
+	<bean id="ligneventeService" class="com.appgestion.web.services.imp.LigneVenteServiceImp">
+		<property name="dao" ref="ligneventeDao"></property>
+	</bean>
+	
+	<bean id="lignereserveDao" class="com.appgestion.web.dao.imp.LigneReservationClientImp" />
+	<bean id="lignereserveService" class="com.appgestion.web.services.imp.LigneReservationServiceImp">
+		<property name="dao" ref="lignereserveDao"></property>
+	</bean>
+	<bean id="flickrDao" class="com.appgestion.web.dao.imp.FlickrDaoImp" />
+	<bean id="flickService" class="com.appgestion.web.services.imp.FlickrServiceImp">
+		<property name="dao" ref="flickrDao"></property>
+	</bean>
+	
+	
+		
+</beans>
